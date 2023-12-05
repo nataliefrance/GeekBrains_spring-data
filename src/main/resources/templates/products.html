@@ -31,6 +31,11 @@
         </tbody>
     </table>
 
+    <form th:action="@{/submit_form}" method="get">
+        <input th:name="minCost" type="number" placeholder="Минимальная цена">
+        <input th:name="maxCost" type="number" placeholder="Максимальная цена">
+        <button type="submit" class="btn btn-primary">Подтвердить</button>
+    </form>
 </div>
 
 </body>

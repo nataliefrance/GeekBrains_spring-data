@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.shipova.lesson_4_homework.entities.Product;
 import ru.shipova.lesson_4_homework.services.ProductService;
@@ -49,5 +50,20 @@ public class MainController {
     @ResponseBody
     public List<Product> findByCostBetween() {
         return productService.findByCostBetween(100L, 1000L);
+    }
+
+    @GetMapping("/submit_form")
+    @ResponseBody
+    //не показываем страничку, в виде какого-текста выводим ответ
+    //Model model не нужно, потому что мы на фронтенд ничего не кидаем
+    public List<Product> getFormResult(@RequestParam(name = "minCost", required = false) Long minCost,
+                                       @RequestParam(name = "maxCost", required = false) Long maxCost) {
+        if (minCost == null) {
+            minCost = 0L;
+        }
+        if (maxCost == null) {
+            maxCost = Long.MAX_VALUE;
+        }
+        return productService.findByCostBetween(minCost, maxCost);
     }
 }
