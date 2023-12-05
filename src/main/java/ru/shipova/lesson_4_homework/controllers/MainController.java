@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ru.shipova.lesson_4_homework.entities.Product;
 import ru.shipova.lesson_4_homework.services.ProductService;
 
@@ -32,4 +33,21 @@ public class MainController {
         return "products";
     }
 
+    @GetMapping("/findByCostMin")
+    @ResponseBody
+    public List<Product> findByCostMin() {
+        return productService.findByCostGreaterThan(0L);
+    }
+
+    @GetMapping("/findByCostMax")
+    @ResponseBody
+    public List<Product> findByCostMax() {
+        return productService.findByCostLessThan(100L);
+    }
+
+    @GetMapping("/findByCostBetween")
+    @ResponseBody
+    public List<Product> findByCostBetween() {
+        return productService.findByCostBetween(100L, 1000L);
+    }
 }
