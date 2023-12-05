@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface EmployeesRepository extends CrudRepository<Employee, Long> { //Employee - тип данных с которым мы работаем, Long - его айдишник
     Employee findOneByName(String name);
-    List<Employee> findAllByIdBetween (Long minId, Long maxId);
+
+    List<Employee> findAllByIdBetween(Long minId, Long maxId);
 }

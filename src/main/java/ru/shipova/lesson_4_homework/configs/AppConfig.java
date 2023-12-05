@@ -1,4 +1,4 @@
-package ru.shipova.springdata.configs;
+package ru.shipova.lesson_4_homework.configs;
 
 import org.springframework.context.annotation.Configuration;
 
